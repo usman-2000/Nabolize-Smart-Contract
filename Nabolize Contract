@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Nabolizer{
+
+    mapping (string => uint8) public patientName_To_Id;
+    mapping (uint8 => bool) public patient_Already_Nabolized;
+
+    function registerPatient(string memory _name,uint8 _id) public {
+        require(patientName_To_Id[_name] != _id,"Patient already registered");
+        
+        patientName_To_Id[_name] = _id;
+    }
+
+    function nabolizePatient(string memory _name,uint8 _id) public {
+        require(patientName_To_Id[_name] == _id,"Patient Not registered");
+        require(patient_Already_Nabolized[_id] != true,"Patient ALready Nabolized");
+
+        patient_Already_Nabolized[_id] = true;
+    }
+}
