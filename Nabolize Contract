@@ -15,7 +15,6 @@ contract Nabolizer{
     function nabolizePatient(string memory _name,uint8 _id) public {
         require(patientName_To_Id[_name] == _id,"Patient Not registered");
         require(patient_Already_Nabolized[_id] != true,"Patient ALready Nabolized");
-
         patient_Already_Nabolized[_id] = true;
     }
 }
